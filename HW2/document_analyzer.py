@@ -1,19 +1,19 @@
-from collections import Counter
-file_name = "document.txt" #fix file directory
+import string
 
-words = []
+limit = 0
+OUTPUT_LIMIT = 5
 
-#Check for bad input. Maybe surround w/ try except (except is catch in python)
-with open("document.txt", "r", errors = "ignore") as f:
-    for word in f:
-         words.append(word.lower().split())
-f.close
-    
+file = open('document.txt', encoding='utf8')
+data = file.read().strip(string.punctuation)
+file.close()
+words = data.split()
 
-count = Counter(words)   
-top5 = count.most_common(5) 
-print(top5)
-
+dict = {i:words.count(i) for i in words}
+for k,v in sorted(dict.items(), key=lambda x:x[1], reverse=True):
+    print(k, ":", v)
+    limit += 1
+    if limit == OUTPUT_LIMIT:
+        break
 
 
 
