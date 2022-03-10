@@ -6,9 +6,11 @@ def calculate_time(func):
         func()
         endTime = time.time()
         print("Total time", endTime - startTime)
-    return inner()
+    return inner
 
-@calculate_time
 def test():
-    time.sleep(2)
-    print(6)
+    return
+
+test = calculate_time(test)
+
+test()
