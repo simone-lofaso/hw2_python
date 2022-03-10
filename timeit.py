@@ -1,10 +1,12 @@
 import time
 
 def calculate_time(func):
-    startTime = time.time()
-    func()
-    endTime = time.time()
-    print("Total time", endTime - startTime)
+    def inner():
+        startTime = time.time()
+        func()
+        endTime = time.time()
+        print("Total time", endTime - startTime)
+    return inner()
 
 @calculate_time
 def test():
